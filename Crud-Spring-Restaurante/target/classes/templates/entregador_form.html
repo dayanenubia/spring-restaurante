@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<div th:replace="cabecalho :: head"></div>
+
+	<title>Crud Manager - Entregador</title>
+</head>
+
+<body>
+	<div class="container my-2">
+		<h2>Entregador</h2>
+		<form action="#" th:action="@{/entregadores/new}" th:object="${entregador}" method="POST">
+		
+			<input type="hidden" th:field="*{id}" id="id">
+			
+			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
+			<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4"> 
+			
+			<span th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}" class="text-danger"></span>
+			<input type="text" th:field="*{genero}" placeholder="Genero" class="form-control mb-4 col-4">
+			
+			<span th:if="${#fields.hasErrors('tipoVeiculo')}" th:errors="*{tipoVeiculo}" class="text-danger"></span>
+			<input type="text" th:field="*{tipoVeiculo}" placeholder="tipoVeiculo" class="form-control mb-4 col-4">
+			
+			<span th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="text-danger"></span>
+			<input type="text" th:field="*{telefone}" placeholder="telefone" class="form-control mb-4 col-4">
+					
+			<button type="submit" class="btn col-2" style="background-color: #9400D3; color:#FFFFFF;">Salvar</button>
+		</form>
+		<hr>
+		<a th:field="@{/entregadores}" href="/entregadores">Entregadores</a>
+	</div>
+</body>
+</html>

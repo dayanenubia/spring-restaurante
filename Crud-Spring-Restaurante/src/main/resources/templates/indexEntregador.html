@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="cabecalho :: head"></div>
+		
+		<title>Crud Manager - Entregadores</title>
+	</head>
+	<body>
+
+<div th:replace="menu :: body"></div>
+
+		<div class="container my-2">
+			<h1>Entregadores</h1>
+			<div>				
+				<a th:href="@{/entregadores/form}" class="btn btn-md mb-3 float-right" style="background-color: #BA55D3; color:#FFFFFF;">
+		   			Adicionar Entregador
+        </a>
+			</div>
+			<table class="table table-striped table-responsive-md">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Genero</th>
+						<th>Tipo do Veiculo</th>
+						<th>Telefone</th>
+						<th>Funções</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p : ${entregadores}">
+						<td th:text="${p.nome}"></td>
+						<td th:text="${p.genero}"></td>
+						<td th:text="${p.tipoVeiculo}"></td>
+						<td th:text="${p.telefone}"></td>
+						<td>
+							<a th:href="@{/entregadores/update/{id}(id=${p.id})}" class="btn" style="background-color: #9932CC; color:#FFFFFF;">Alterar</a>
+							
+							<a th:href="@{/entregadores/delete/{id}(id=${p.id})}" class="btn" style="background-color: #A020F0; color:#FFFFFF;">Excluir</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

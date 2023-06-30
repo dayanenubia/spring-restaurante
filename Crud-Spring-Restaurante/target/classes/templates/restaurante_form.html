@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<div th:replace="cabecalho :: head"></div>
+
+	<title>Crud Manager - Restaurante</title>
+</head>
+
+<body>
+	<div class="container my-2">
+		<h2>Restaurante</h2>
+		<form action="#" th:action="@{/restaurantes/new}" th:object="${restaurante}" method="POST">
+		
+			<input type="hidden" th:field="*{id}" id="id">
+			
+			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
+			<input type="text" th:field="*{nome}" placeholder="nome" class="form-control mb-4 col-4"> 
+			
+			<span th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}" class="text-danger"></span>
+			<input type="text" th:field="*{endereco}" placeholder="endereco da restaurante" class="form-control mb-4 col-4"> 
+			
+			<span th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="text-danger"></span>
+			<input type="text" th:field="*{telefone}" placeholder="telefone" class="form-control mb-4 col-4"> 
+			
+			<span th:if="${#fields.hasErrors('site')}" th:errors="*{site}" class="text-danger"></span>
+			<input type="text" th:field="*{site}" placeholder="site do atendimento" class="form-control mb-4 col-4">
+			
+			<div class="form-group">
+			    <label for="entregador">entregador da restaurante</label>
+    <select class="form-control" id="entregador" th:field="*{entregador.id}">
+        <option value="">Selecione um entregador</option>
+        <option th:each="entregador : ${entregadores}" th:value="${entregador.id}" th:text="${entregador.getNome()}"></option>
+    </select>
+			</div>
+			
+			<button type="submit" class="btn col-2" style="background-color: #9400D3; color:#FFFFFF;">Salvar</button>
+		</form>
+		<hr>
+		<a th:field="@{/restaurantes}" href ="/restaurantes">Restaurantes</a>
+	</div>
+</body>
+</html>
